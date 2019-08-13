@@ -578,12 +578,12 @@
             <url>git:ssh://git@github.com/atlassian/ldap-maven-plugin.git?gh-pages#</url>
         </site>
         <repository>
-            <id>releases.sonatype</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+            <id>atlassian-3rdparty</id>
+            <url>https://maven.atlassian.com/3rdparty</url>
         </repository>
         <snapshotRepository>
-            <id>snapshots.sonatype</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <id>atlassian-3rdparty-snapshot</id>
+            <url>https://maven.atlassian.com/3rdparty-snapshot</url>
         </snapshotRepository>
     </distributionManagement>
 </project>

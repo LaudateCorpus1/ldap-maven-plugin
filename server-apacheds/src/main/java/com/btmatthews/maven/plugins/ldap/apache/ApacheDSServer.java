@@ -30,13 +30,14 @@ import org.apache.directory.server.core.exception.ExceptionInterceptor;
 import org.apache.directory.server.core.factory.DefaultDirectoryServiceFactory;
 import org.apache.directory.server.core.normalization.NormalizationInterceptor;
 import org.apache.directory.server.core.operational.OperationalAttributeInterceptor;
-import org.apache.directory.server.core.partition.impl.avl.AvlPartition;
+import org.apache.directory.server.core.partition.impl.btree.jdbm.JdbmPartition;
 import org.apache.directory.server.core.referral.ReferralInterceptor;
 import org.apache.directory.server.core.subtree.SubentryInterceptor;
 import org.apache.directory.server.ldap.LdapServer;
 import org.apache.directory.server.protocol.shared.store.LdifFileLoader;
 import org.apache.directory.server.protocol.shared.transport.TcpTransport;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,11 +106,13 @@ public final class ApacheDSServer extends AbstractLDAPServer {
             InstanceLayout il = new InstanceLayout(getWorkingDirectory());
             directoryService.setInstanceLayout(il);
 
-            AvlPartition partition = new AvlPartition(
+            JdbmPartition partition = new JdbmPartition(
                     directoryService.getSchemaManager());
             partition.setId(INSTANCE_NAME);
             partition.setSuffixDn(new Dn(directoryService.getSchemaManager(),
                     getRoot()));
+            partition.setPartitionPath(
+                    new File(this.directoryService.getInstanceLayout().getPartitionsDirectory(), "test").toURI());
             partition.initialize();
             directoryService.addPartition(partition);
 

@@ -1,3 +1,5 @@
+DO NOT USE THIS REPO - USE https://bitbucket.org/atlassian/ldap-maven-plugin/src/master/
+
 LDAP Maven Plugin
 =================
 
